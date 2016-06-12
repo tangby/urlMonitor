@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	.all {
+    width: 100%;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    background-color: #E0E0FF;
+	}
+	table {
+	    margin: 0.5em 0 0 0.5em;
+	    border-collapse: collapse;
+	}
+	td {
+	    padding: 0.25em 0.5em 0.25em 0.5em;
+	    border: 1pt solid #ADB9CC;
+	    width:600px;
+	}
+	.sub_txt {
+		width:97%;
+	}
+	.describe {
+		font-weight: bold;
+		font-size: 60%;
+	}
+</style>
+</head>
+<body>
+	<table>
+		<tr>
+			<td>Create New Monitor</td>
+		</tr>
+	</table>
+	
+	<form action='/add' method=POST>
+	<table>
+		<tr style="background-color: #E0E0FF; font-weight: bold">
+			<td style='width: 120px;'>name</td>
+			<td class='describe'>请输入一个名字（数字或下划线组合）</td>
+		</tr>
+		<tr>
+			<td style='width: 120px;'></td>
+			<td><input class='sub_txt' type='text' name='name' /></td>
+		</tr>
+	</table>
+		<table>
+		<tr style="background-color: #E0E0FF; font-weight: bold">
+			<td style='width: 120px;'>interval</td>
+			<td class='describe'>请输入一个时间(单位为秒), 系统会按照这个间隔运行此监控,</td>
+		</tr>
+		<tr>
+			<td style='width: 120px;'></td>
+			<td><input class='sub_txt' type='text' value=60 name='interval' ></td>
+		</tr>
+	</table>
+		<table>
+		<tr style="background-color: #E0E0FF; font-weight: bold">
+			<td style='width: 120px;'>mailInterval</td>
+			<td class='describe'>请输入一个时间(单位为分钟), 系统在这个间隔内只发送一次email警报给你,</td>
+		</tr>
+		<tr>
+			<td style='width: 120px;'></td>
+			<td><input class='sub_txt' type='text' value=10 name='mailInterval' /></td>
+		</tr>
+	</table>
+	</table>
+		<table>
+		<tr style="background-color: #E0E0FF; font-weight: bold">
+			<td style='width: 120px;'>smsInterval</td>
+			<td class='describe'>请输入一个时间(单位为分钟), 系统在这个间隔内只发送一次短信警报给你,</td>
+		</tr>
+		<tr>
+			<td style='width: 120px;'></td>
+			<td><input class='sub_txt' type='text' value=10 name='smsInterval' /></td>
+		</tr>
+	</table>
+		</table>
+		<table>
+		<tr style="background-color: #E0E0FF; font-weight: bold">
+			<td style='width: 120px;'>smsStartTime</td>
+			<td class='describe'>请输入一个时间(如00:00), 系统在这个时间以后发送短信警报给你,</td>
+		</tr>
+		<tr>
+			<td style='width: 120px;'></td>
+			<td><input class='sub_txt' type='text' value='08:00' name='smsBegin' /></td>
+		</tr>
+	</table>
+		</table>
+		<table>
+		<tr style="background-color: #E0E0FF; font-weight: bold">
+			<td style='width: 120px;'>smsEndTime</td>
+			<td class='describe'>请输入一个时间(如23:59), 系统在这个时间以后不发送短信警报给你,</td>
+		</tr>
+		<tr>
+			<td style='width: 120px;'></td>
+			<td><input class='sub_txt' type='text' value='23:00' name='smsEnd' /></td>
+		</tr>
+	</table>
+		</table>
+		<table>
+		<tr style="background-color: #E0E0FF; font-weight: bold">
+			<td style='width: 120px;'>times4rpt</td>
+			<td class='describe'>请输入一个数字，系统将在此monitor连续失败n次以后发送警报,</td>
+		</tr>
+		<tr>
+			<td style='width: 120px;'></td>
+			<td><input class='sub_txt' type='text' value=3 name='retryTimes' /></td>
+		</tr>
+	</table>
+	<table>
+		<tr style="background-color: #E0E0FF; font-weight: bold">
+			<td style='width: 120px;'>interval4rpt</td>
+			<td class='describe'>请输入重试间隔，单位为分钟,</td>
+		</tr>
+		<tr>
+			<td style='width: 120px;'></td>
+			<td><input class='sub_txt' type='text' value=3 name='retryInterval' /></td>
+		</tr>
+	</table>
+		</table>
+		<table>
+		<tr style="background-color: #E0E0FF; font-weight: bold">
+			<td style='width: 120px;'>description</td>
+			<td class='describe'>请对此monitor做简单的描述</td>
+		</tr>
+		<tr>
+			<td style='width: 120px;'></td>
+			<td><input class='sub_txt' type='text' name='describe' /></td>
+		</tr>
+	</table>
+		</table>
+		<table>
+		<tr style="background-color: #E0E0FF; font-weight: bold">
+			<td style='width: 120px;'>url</td>
+			<td class='describe'>要监控的URL</td>
+		</tr>
+		<tr>
+			<td style='width: 120px;'></td>
+			<td><input class='sub_txt' type='text' name='url' /></td>
+		</tr>
+	</table>
+		</table>
+		<table>
+		<tr style="background-color: #E0E0FF; font-weight: bold">
+			<td style='width: 120px;'>timeout</td>
+			<td class='describe'>请输入一个超时时间 单位是毫秒</td>
+		</tr>
+		<tr>
+			<td style='width: 120px;'></td>
+			<td><input class='sub_txt' type='text' value=2000 name='timeout' /></td>
+		</tr>
+	</table>
+		</table>
+		<table>
+		<tr style="background-color: #E0E0FF; font-weight: bold">
+			<td style='width: 120px;'>contacts</td>
+			<td class='describe'>报警联系人</td>
+		</tr>
+		<tr>
+			<td style='width: 120px;'></td>
+			<td><input class='sub_txt' type='text' name='contacts' /></td>
+		</tr>
+	</table>
+	</table>
+		<table>
+		<tr style="background-color: #E0E0FF; font-weight: bold">
+			<td style='width: 120px;'>statusCode</td>
+			<td class='describe'>监控状态码</td>
+		</tr>
+		<tr>
+			<td style='width: 120px;'></td>
+			<td><input class='sub_txt' type='text' value=200 name='statusCode' /></td>
+		</tr>
+	</table>
+	<input type='submit' value='提交' />
+	</form>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	.all {
+	    width: 100%;
+	    border: 0;
+	    margin: 0;
+	    padding: 0;
+	    background-color: #E0E0FF;
+	}
+	table {
+	    margin: 0.5em 0 0 0.5em;
+	    border-collapse: collapse;
+	}
+	tr {
+	    display: table-row;
+	    vertical-align: inherit;
+	    border-color: inherit;
+	}
+	td {
+	    padding: 0.25em 0.5em 0.25em 0.5em;
+	    border: 1pt solid #ADB9CC;
+	    width:10%;
+	}
+	.poor_td{
+		padding: 0.25em 0.5em 0.25em 0.5em;
+	    border: 1pt solid #ADB9CC;
+	    width:5%;
+	}
+</style>
+</head>
+<body>
+	<table>
+		<tr>
+			<td style='width:100px;border:0'><img src='/static/images/managersystemlogo02.gif'/></td>
+		</tr>
+	</table>
+	<table>
+		<tr>
+			<td style='width:200px;border:0;'><a href='/add'>Create Monitor</a></td>
+		</tr>
+	</table>
+	<table border='1'>
+		<tr style='background-color:#E0E0FF'>
+			<td class='poor_td'>ID</td>
+			<td>Name</td>
+			<td>Status</td>
+			<td>URL</td>
+			<td>Timeout</td>
+			<td>RetryTimes</td>
+			<td>RetryInterval</td>
+			<td class='poor_td'>START</td>
+			<td class='poor_td'>STOP</td>
+			<td class='poor_td'>Modify</td>
+			<td class='poor_td'>DELETE</td>
+		</tr>
+	{% for i in monitors %}
+		<tr>
+			<td class='poor_td'>{{ i.id }}</td>
+			<td>{{ i.mName }}</td>
+			<td>
+				{% if i.status %}
+					{{ 'Running' }}
+				{% else %}
+					{{  'Stopped' }}
+				{% endif %}
+			</td>
+			<td>{{ i.url }}</td>
+			<td>{{ i.timeout }}</td>
+			<td>{{ i.retryTimes }}</td>
+			<td>{{ i.interval }}</td>
+			<td class='poor_td'><a href='/start?id={{ i.id }}'>start</a></td>
+			<td class='poor_td'><a href='/stop?id={{ i.id }}'>stop</a></td>
+			<td class='poor_td'><a href='/modify?id={{ i.id }}'>modify</a></td>
+			<td class='poor_td'><a href='/del?id={{ i.id }}'>delete</a></td>
+
+		</tr>
+		{% endfor %}
+	</table>
+	
+		
+	
+	
+</body>
+</html>
